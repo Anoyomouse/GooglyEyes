@@ -3,15 +3,14 @@
   "modid": "googlyeyes",
   "name": "Googly Eyes Mod",
   "description": "Adds googly eyes for blocks.",
-  "version": "${mod_version}",
-  "mcversion": "${minecraft_version}",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
   "url": "http://www.anoyomouse.co.za",
   "updateUrl": "",
   "authorList": [ "Anoyomouse" ],
-  "credits": "anoyomouse",
+  "credits": "Pahimar for his great let's mod reboot series!",
   "logoFile": "assets/googlyeyes/textures/logo/logo.png",
   "screenshots": [],
-  "parent":"",
   "dependencies": []
 }
 ]

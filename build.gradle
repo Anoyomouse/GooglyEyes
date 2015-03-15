@@ -1,118 +1,51 @@
 buildscript {
-    repositories {
-        mavenCentral()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
-    }
-    dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
-    }
+	repositories {
+		mavenCentral()
+		maven {
+			name = "forge"
+			url = "http://files.minecraftforge.net/maven"
+		}
+		maven {
+			name = "sonatype"
+			url = "https://oss.sonatype.org/content/repositories/snapshots/"
+		}
+	}
+	dependencies {
+		classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+	}
 }
 
-apply plugin: 'java'
 apply plugin: 'forge'
 
-repositories {
-}
-dependencies {
-}
-
-ext.configFile = file "build.properties"
-
-configFile.withReader {
-	def prop = new Properties()
-	prop.load(it)
-	project.ext.config = new ConfigSlurper().parse prop
-}
-
-version = config.mod_version
+version = "1.7.10-0.1"
 group = "com.anoyomouse.googlyeyes" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "GooglyEyes"
 
 minecraft {
-    version = config.minecraft_version + "-" + config.forge_version
-    runDir = "eclipse"
+	version = "1.7.10-10.13.2.1291"
+	runDir = "eclipse"
+}
 
-	replaceIn "reference/Reference.java"
-	replace "@VERSION@", "${config.mod_version}.${System.getenv("BUILD_NUMBER") ?: 0}"
-	if (project.hasProperty("googlyeyes_signature"))
+dependencies {
+
+}
+
+processResources
 	{
-		replace "@FINGERPRINT@", project.googlyeyes_signature
-	}
-}
+		// this will ensure that this task is redone when the versions change.
+		inputs.property "version", project.version
+		inputs.property "mcversion", project.minecraft.version
 
-version = "${config.minecraft_version}-${config.mod_version}.${System.getenv("BUILD_NUMBER") ?: 0}"
+		// replace stuff in mcmod.info, nothing else
+		from(sourceSets.main.resources.srcDirs) {
+			include 'mcmod.info'
 
-processResources {
-	// exclude xcf files, as they are for development only
-	exclude '**/*.xcf'
+			// replace version and mcversion
+			expand 'version': project.version, 'mcversion': project.minecraft.version
+		}
 
-	// replace stuff in mcmod.info, nothing else
-	from(sourceSets.main.resources.srcDirs) {
-		include '*.info'
-
-		// replace version and mcversion
-		expand 'mod_version': project.version, 'minecraft_version': project.config.minecraft_version
-	}
-
-	// copy everything else, thats not the mcmod.info
-	from(sourceSets.main.resources.srcDirs) {
-		exclude '**/*.info'
-	}
-}
-
-task devJar(type: Jar, dependsOn: 'classes') {
-	from(sourceSets.main.output) {
-		include '**'
-	}
-
-	extension = 'jar'
-	classifier = 'dev'
-}
-
-artifacts {
-	archives devJar
-}
-
-//tasks.build.dependsOn('signJar')
-if (!project.hasProperty("keystore_location")) // keystore stuff
-	ext.keystore_location = "."
-if (!project.hasProperty("keystore_password")) // keystore stuff
-	ext.keystore_password = ""
-if (!project.hasProperty("googlyeyes_keystore_alias")) // keystore stuff
-	ext.googlyeyes_keystore_alias = ""
-
-task signJar(dependsOn: ["reobf", "devJar"]) {
-	inputs.dir jar.destinationDir
-	inputs.file keystore_location
-	inputs.property "googlyeyes_keystore_alias", googlyeyes_keystore_alias
-	inputs.property "keystore_password", keystore_password
-	outputs.dir devJar.destinationDir
-
-	// only sign if the keystore exists
-	onlyIf {
-		return keystore_location != "." && keystore_password != ""
-	}
-	// the actual action.. sign the jar.
-	doLast {
-		jar.destinationDir.eachFile { file ->
-			if (!file.getPath().endsWith(".jar"))
-				return; // skip non-jars
-
-			logger.lifecycle "signing $file"
-			ant.signjar(
-				destDir: file.getParentFile(), // same place it came from
-				jar: file,
-				keystore: keystore_location,
-				alias: googlyeyes_keystore_alias,
-				storepass: keystore_password
-			)
+		// copy everything else, thats not the mcmod.info
+		from(sourceSets.main.resources.srcDirs) {
+			exclude 'mcmod.info'
 		}
 	}
-}
