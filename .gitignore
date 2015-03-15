@@ -1,0 +1,15 @@
+ignore/
+*~
+bin/
+.classpath
+.project
+.gradle/
+eclipse/
+.settings/
+run/logs/
+out/
+run/
+*.iml
+*.ipr
+*.iws
+Thumbs.db
