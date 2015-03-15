@@ -1,5 +1,8 @@
 # Items
-item.googlyeyes:googlyEyeItem.name=Googly Eye Item
+item.googlyeyes:smallEyes.name=Small Googly Eyes!
 
 # Blocks
-tile.googlyeyes:smallGooglyEyes.name=Small Googly Eyes
+tile.googlyeyes:blockSmallEyes.name=Small Googly Eyes
+
+#Creative tab
+itemGroup.googlyeyes=Googly Eyes

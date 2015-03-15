@@ -1,6 +1,8 @@
 package com.anoyomouse.googlyeyes;
 
 import com.anoyomouse.googlyeyes.handler.ConfigurationHandler;
+import com.anoyomouse.googlyeyes.init.ModBlocks;
+import com.anoyomouse.googlyeyes.init.ModItems;
 import com.anoyomouse.googlyeyes.proxy.IProxy;
 import com.anoyomouse.googlyeyes.reference.Reference;
 import com.anoyomouse.googlyeyes.utility.LogHelper;
@@ -33,6 +35,9 @@ public class GooglyEyes
 		FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
 
 		LogHelper.info("Pre initialization Complete!");
+
+		ModItems.init();
+		ModBlocks.init();
 	}
 
 	@Mod.EventHandler
