@@ -1,8 +1,10 @@
 package com.anoyomouse.googlyeyes.proxy;
 
-import com.anoyomouse.googlyeyes.client.item.ItemRendererGooglyEyes;
+import com.anoyomouse.googlyeyes.client.renderer.item.ItemRendererGooglyEyes;
+import com.anoyomouse.googlyeyes.client.renderer.tileentity.TileEntityRendererGooglyEyes;
 import com.anoyomouse.googlyeyes.init.ModBlocks;
 import com.anoyomouse.googlyeyes.reference.RenderIds;
+import com.anoyomouse.googlyeyes.tileentity.TileEntityGooglyEyes;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.item.Item;
@@ -26,8 +28,8 @@ public class ClientProxy extends CommonProxy
 	{
 		RenderIds.smallGooglyEyes = RenderingRegistry.getNextAvailableRenderId();
 
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.smallEyeBlock), new ItemRendererGooglyEyes());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.blockSmallEyes), new ItemRendererGooglyEyes());
 
-		// ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAlchemicalChest.class, new TileEntityRendererAlchemicalChest());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGooglyEyes.class, new TileEntityRendererGooglyEyes());
 	}
 }

@@ -3,6 +3,8 @@ package com.anoyomouse.googlyeyes;
 import com.anoyomouse.googlyeyes.handler.ConfigurationHandler;
 import com.anoyomouse.googlyeyes.init.ModBlocks;
 import com.anoyomouse.googlyeyes.init.ModItems;
+import com.anoyomouse.googlyeyes.init.TileEntities;
+import com.anoyomouse.googlyeyes.network.PacketHandler;
 import com.anoyomouse.googlyeyes.proxy.IProxy;
 import com.anoyomouse.googlyeyes.reference.Reference;
 import com.anoyomouse.googlyeyes.utility.LogHelper;
@@ -32,6 +34,8 @@ public class GooglyEyes
 	{
 		ConfigurationHandler.init(event.getSuggestedConfigurationFile());
 
+		PacketHandler.init();
+
 		FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
 
 		LogHelper.info("Pre initialization Complete!");
@@ -44,7 +48,7 @@ public class GooglyEyes
 	public void init(FMLInitializationEvent event)
 	{
 		// Initialize mod tile entities
-		// TileEntities.init();
+		TileEntities.init();
 
 		// Initialize custom rendering and pre-load textures (Client only)
 		proxy.initRenderingAndTextures();

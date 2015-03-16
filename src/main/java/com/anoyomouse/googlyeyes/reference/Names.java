@@ -16,4 +16,9 @@ public class Names
 	{
 		public static final String GOOGLY_EYES_SMALL = "blockSmallEyes";
 	}
+
+	public class NBT
+	{
+		public static final String ORIENTATION = "orientation";
+	}
 }

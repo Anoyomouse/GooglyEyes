@@ -14,10 +14,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 @GameRegistry.ObjectHolder(Reference.MOD_ID)
 public class ModBlocks
 {
-	public static final BlockGE smallEyeBlock = new BlockSmallEyes();
+	public static final BlockGE blockSmallEyes = new BlockSmallEyes();
 
 	public static void init()
 	{
-		GameRegistry.registerBlock(smallEyeBlock, Names.Blocks.GOOGLY_EYES_SMALL);
+		GameRegistry.registerBlock(blockSmallEyes, Names.Blocks.GOOGLY_EYES_SMALL);
 	}
 }

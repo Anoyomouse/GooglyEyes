@@ -1,4 +1,4 @@
-package com.anoyomouse.googlyeyes.client.item;
+package com.anoyomouse.googlyeyes.client.renderer.item;
 
 import com.anoyomouse.googlyeyes.client.renderer.model.ModelGooglyEye;
 import com.anoyomouse.googlyeyes.reference.Textures;
@@ -40,7 +40,7 @@ public class ItemRendererGooglyEyes implements IItemRenderer
 		{
 			case ENTITY:
 			{
-				renderGooglyEyes(0.5F, 0.5F, 0.5F);
+				renderGooglyEyes(0.0F, 0.5F, 0.0F);
 				return;
 			}
 			case EQUIPPED:
