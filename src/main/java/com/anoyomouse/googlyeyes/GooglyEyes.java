@@ -43,6 +43,12 @@ public class GooglyEyes
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
+		// Initialize mod tile entities
+		// TileEntities.init();
+
+		// Initialize custom rendering and pre-load textures (Client only)
+		proxy.initRenderingAndTextures();
+
 		LogHelper.info("Initialization Complete!");
 	}
 

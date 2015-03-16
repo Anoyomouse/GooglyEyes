@@ -7,4 +7,7 @@ package com.anoyomouse.googlyeyes.proxy;
  */
 public interface IProxy
 {
+	public abstract ClientProxy getClientProxy();
+
+	public abstract void initRenderingAndTextures();
 }
