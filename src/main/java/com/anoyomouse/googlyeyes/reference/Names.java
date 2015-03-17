@@ -20,5 +20,8 @@ public class Names
 	public class NBT
 	{
 		public static final String ORIENTATION = "orientation";
+		public static final String EYE_FLAGS = "eyeflags";
+		public static final String PUPIL_X = "pupilx";
+		public static final String PUPIL_Y = "pupily";
 	}
 }

@@ -13,3 +13,4 @@ run/
 *.ipr
 *.iws
 Thumbs.db
+build/
